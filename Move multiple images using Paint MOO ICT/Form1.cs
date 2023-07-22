@@ -2,10 +2,59 @@ namespace Move_multiple_images_using_Paint_MOO_ICT
 {
     public partial class Form1 : Form
     {
+        // Procedemos a crear las variables.
+
+        List<Card> cartas = new List<Card>(); // Variable para las cartas mediante listas.
+        Card CartaSeleccionada; // Selección de cualquier carta del mazo.
+        int indexValue; // Valor del índice.
+        int xPosition = 5; // La posición en x es 5.
+        List<string> imageLocation = new List<string>(); // La ubicación de cualquier foto se posicionan mediante listas.
+        int numCarta = -1; // Valor del número de la carta por defecto.
+        int cartasTotales = 0; // Número de cartas totales del mazo.
+        int lineaAnimacion = 0; // Se inicializa el valor de esta variable.
+
         // Método de la interfaz visual del juego.
         public Form1()
         {
-            InitializeComponent();
+            InitializeComponent(); // Llamado del método inicial.
+            SetUpApp(); // Llamado del método a ejecutar.
+        }
+
+        // Método que funcionaliza la aplicación.
+
+        private void SetUpApp()
+        {
+            // Crearemos un algoritmo para que pueda compatibilizar la ejecución de la app con las fotos importadas.
+
+            imageLocation = Directory.GetFiles("cards", "*.png").ToList(); // Se visualizarán las fotos ya importadas desde un directorio descargado.
+            cartasTotales = imageLocation.Count; // Se contabilizarán las cartas en la app.
+
+            // Crearemos un ciclo for para generar cartas mediante fotos ya importadas.
+
+            for (int i = 0; i < cartasTotales; i++)
+            {
+                HacerCartas(); // Genera un llamado a este método.
+            }
+
+            // Pero aún no acaba aquí...
+
+            label1.Text = "Card " + (numCarta + 1) + " of " + cartasTotales; // Texto completo que se muestra en la parte de abajo de la interfaz en amarillo.
+        }
+
+        // Método privado que hace las cartas.
+
+        private void HacerCartas()
+        {
+            // Algoritmo más dificultoso para posicionar cartas.
+
+            numCarta++; // Se incrementan el número de las cartas.
+            xPosition += 55; // Posición en X por defecto.
+            Card nuevaCarta = new Card(imageLocation[numCarta]); // Nueva variable para generar nuevas cartas.
+            nuevaCarta.position.X = xPosition; // Se entregó un valor por defecto en la variable anterior.
+            nuevaCarta.position.Y = 300; // La nueva carta generada en la posición en Y es de 300.
+            nuevaCarta.rectangulo.X = nuevaCarta.position.X; // La nueva carta generada estará en la posición en X.
+            nuevaCarta.rectangulo.Y = nuevaCarta.position.Y; // La nueva carta generada estará en la posición en Y.
+            cartas.Add(nuevaCarta); // Se añadirán las cartas ya generadas.
         }
 
         // Método que se ejecuta al bajar el mouse.
