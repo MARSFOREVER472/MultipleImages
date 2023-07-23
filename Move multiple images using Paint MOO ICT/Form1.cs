@@ -61,7 +61,27 @@ namespace Move_multiple_images_using_Paint_MOO_ICT
 
         private void FormMouseDown(object sender, MouseEventArgs e)
         {
-            // EN INSTANTES...
+            // Definiremos mediante un algoritmo sencillo utilizando esta función al seleccionar una nueva carta.
+
+            // Primero crearemos algunas variables.
+
+            Point posicionMouse = new Point(e.X, e.Y); // Posición del mouse.
+
+            // Crearemos un foreach para cada nueva carta que se genere y que aparezca en el tablero.
+
+            foreach (Card newCard in cartas)
+            {
+                if (CartaSeleccionada == null) // Si no se ha seleccionado una carta.
+                {
+                    if (newCard.rectangulo.Contains(posicionMouse)) // Si se generó un rectángulo hacia la carta mediante un contenedor del mouse.
+                    {
+                        CartaSeleccionada = newCard; // Selecciona una nueva carta.
+                        newCard.active = true; // Se activará esta función para la carta nueva que se genera.
+                        indexValue = cartas.IndexOf(newCard); // Al generar una nueva carta, el valor del índice se incrementa en +1.
+                        label1.Text = "Card " + (indexValue + 1) + " of " + cartasTotales; // " Card (1, 2, 3, 4, 5, ...) of 13 ".
+                    }
+                }
+            }
         }
 
         // Método que se ejecuta al mover el mouse.
