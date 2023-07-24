@@ -119,6 +119,31 @@ namespace Move_multiple_images_using_Paint_MOO_ICT
             {
                 e.Graphics.DrawImage(carta.fotoCarta, carta.position.X, carta.position.Y, carta.ancho,
                     carta.altura);
+
+                // Ahora pasaremos dentro de este ciclo a dibujar y colorear las cartas de un color distinto.
+
+                Pen outline; // Tipo de lápiz en la cual podremos dibujar.
+
+                if (carta.active) // Si la función de la carta está activada.
+                {
+                    outline = new Pen(Color.Orange, lineaAnimacion); // El color de este estilo es naranja.
+                }
+                else // En caso contrario ésta será transparente.
+                {
+                    outline = new Pen(Color.Transparent, 1);
+                }
+
+                // Con esto dibujaremos un rectángulo para la carta.
+
+                e.Graphics.DrawRectangle(outline, carta.rectangulo);
+            }
+
+            // Si la carta ya está elegida.
+
+            if (CartaSeleccionada != null)
+            {
+                e.Graphics.DrawImage(CartaSeleccionada.fotoCarta, CartaSeleccionada.position.X, CartaSeleccionada.position.Y, 
+                    CartaSeleccionada.ancho, CartaSeleccionada.altura); // Se dibuja una carta ya existente con sus parámetros respectivos.
             }
         }
 
@@ -139,7 +164,9 @@ namespace Move_multiple_images_using_Paint_MOO_ICT
                 {
                     lineaAnimacion++; // Va a haber animación lineal con las cartas.
                 }
-            }    
+            }
+
+            this.Invalidate(); // Parámetros incorrectos.
         }
     }
 }
