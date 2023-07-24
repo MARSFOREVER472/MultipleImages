@@ -48,7 +48,7 @@ namespace Move_multiple_images_using_Paint_MOO_ICT
             // Algoritmo más dificultoso para posicionar cartas.
 
             numCarta++; // Se incrementan el número de las cartas.
-            xPosition += 55; // Posición en X por defecto.
+            xPosition += 50; // Posición en X por defecto.
             Card nuevaCarta = new Card(imageLocation[numCarta]); // Nueva variable para generar nuevas cartas.
             nuevaCarta.position.X = xPosition; // Se entregó un valor por defecto en la variable anterior.
             nuevaCarta.position.Y = 300; // La nueva carta generada en la posición en Y es de 300.
