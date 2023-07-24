@@ -100,7 +100,14 @@ namespace Move_multiple_images_using_Paint_MOO_ICT
         // Método que se ejecuta al subir el mouse.
         private void FormMouseUp(object sender, MouseEventArgs e)
         {
-            // EN INSTANTES...
+            // Crearemos un algoritmo simple mediante un foreach para esta acción.
+
+            foreach (Card tempCarta in cartas)
+            {
+                tempCarta.active = false; // No se generará esta línea de código por defecto.
+            }
+            CartaSeleccionada = null; // La carta seleccionada no está incluida o no existe.
+            lineaAnimacion = 0; // Valor por defecto.
         }
 
         // Método tal como su nombre lo indica, se hace con Paint.
