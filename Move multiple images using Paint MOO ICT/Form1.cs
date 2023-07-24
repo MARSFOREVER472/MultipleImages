@@ -113,13 +113,33 @@ namespace Move_multiple_images_using_Paint_MOO_ICT
         // Método tal como su nombre lo indica, se hace con Paint.
         private void FormPaintEvent(object sender, PaintEventArgs e)
         {
-            // EN INSTANTES...
+            // Se hará una ilustración para las cartas importadas mediante un foreach.
+
+            foreach (Card carta in cartas)
+            {
+                e.Graphics.DrawImage(carta.fotoCarta, carta.position.X, carta.position.Y, carta.ancho,
+                    carta.altura);
+            }
         }
 
         // Método funcional en base al temporizador del juego.
         private void FormTimerEvent(object sender, EventArgs e)
         {
-            // EN INSTANTES...
+            // Usaremos el mismo algoritmo mediante un foreach.
+
+            foreach (Card carta in cartas)
+            {
+                carta.rectangulo.X = carta.position.X; // La posición en X será el ancho del rectángulo.
+                carta.rectangulo.Y = carta.position.Y; // La posición en Y será la altura del rectángulo.
+            }
+
+            if (CartaSeleccionada != null) // Si ya se eligió la carta.
+            {
+                if (lineaAnimacion < 10) // Si es que se cumple con esta condición.
+                {
+                    lineaAnimacion++; // Va a haber animación lineal con las cartas.
+                }
+            }    
         }
     }
 }
