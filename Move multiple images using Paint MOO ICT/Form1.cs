@@ -87,7 +87,14 @@ namespace Move_multiple_images_using_Paint_MOO_ICT
         // Método que se ejecuta al mover el mouse.
         private void FormMouseMove(object sender, MouseEventArgs e)
         {
-            // EN INSTANTES...
+            // Apoyaremos en este método mediante un algoritmo de posiciones en X e Y.
+
+            if (CartaSeleccionada != null) // Si la carta ya está seleccionada.
+            {
+                CartaSeleccionada.position.X = e.X - (CartaSeleccionada.ancho / 2); // Posición según el ancho de la carta.
+                CartaSeleccionada.position.Y = e.Y - (CartaSeleccionada.altura / 2); // Posición según la altura de la carta.
+
+            }
         }
 
         // Método que se ejecuta al subir el mouse.
